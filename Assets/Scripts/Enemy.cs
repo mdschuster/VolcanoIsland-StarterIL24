@@ -30,12 +30,16 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             //destroy the fireball
+            Destroy(gameObject);
         }
 
         if (other.gameObject.tag == "Player")
         {
-            //destroy the fireball
+            Player p = other.gameObject.GetComponent<Player>();
             //damage the player
+            p.damage(damage);
+            //destroy the fireball
+            Destroy(gameObject);
         }
     }
 }
