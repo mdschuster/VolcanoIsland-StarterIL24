@@ -27,4 +27,26 @@ public class Player : MonoBehaviour
         float y = 0;
         rb.velocity = new Vector2(x,y);
     }
+
+    public void reset()
+    {
+        health = maxHealth;
+        Vector3 pos = new Vector3(0f, -3.9f, 0f);
+        transform.position = pos;
+        gameObject.SetActive(true);
+    }
+
+    public void damage(int amt)
+    {
+        health -= amt;
+        if (health <= 0)
+        {
+            //destroy the player (set active to false)
+            //tell the GM to show GameOver UI
+            //play a sound
+            //play a particle system
+            
+            gameObject.SetActive(false);
+        }
+    }
 }
