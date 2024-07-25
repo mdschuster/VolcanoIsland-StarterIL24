@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,5 +23,19 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            //destroy the fireball
+        }
+
+        if (other.gameObject.tag == "Player")
+        {
+            //destroy the fireball
+            //damage the player
+        }
     }
 }
