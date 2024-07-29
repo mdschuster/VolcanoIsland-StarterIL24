@@ -10,8 +10,10 @@ public class Enemy : MonoBehaviour
     public int damage;
     public float maxSpeed;
     public float minSpeed;
+    public GameObject explosionFX;
 
     private float speed;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,10 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
+            //play the explosion
+            Vector3 pos = this.transform.position;
+            Instantiate(explosionFX, pos, Quaternion.identity);
+            
             //destroy the fireball
             Destroy(gameObject);
         }
@@ -38,6 +44,9 @@ public class Enemy : MonoBehaviour
             Player p = other.gameObject.GetComponent<Player>();
             //damage the player
             p.damage(damage);
+            //play the explosion
+            Vector3 pos = this.transform.position;
+            Instantiate(explosionFX, pos, Quaternion.identity);
             //destroy the fireball
             Destroy(gameObject);
         }
