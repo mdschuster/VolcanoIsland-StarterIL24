@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     private int health; //current health
     private Rigidbody2D rb;
+    private Animator anim;
     
     
     // Start is called before the first frame update
@@ -18,11 +19,33 @@ public class Player : MonoBehaviour
     {
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         float input = Input.GetAxisRaw("Horizontal");
+        //animation stuff
+        if (input > 0)
+        {
+            //tell the state machine that I am running
+            anim.SetBool("isRunning",true);
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        }
+        else if (input < 0)
+        {
+            //tell the state machine that I am running
+            anim.SetBool("isRunning",true);
+            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+        }
+        else
+        {
+            //tell the state machine that I am not running
+            anim.SetBool("isRunning",false);
+        }
+        
+        
+        
         float x = speed*input;
         float y = 0;
         rb.velocity = new Vector2(x,y);
@@ -43,6 +66,7 @@ public class Player : MonoBehaviour
         {
             //destroy the player (set active to false)
             //tell the GM to show GameOver UI
+            GameManager.instance().activateGameOver();
             //play a sound
             //play a particle system
             

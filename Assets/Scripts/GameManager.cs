@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
 
     private Player player;
+    public Canvas gameOverCanvas;
     
     // Start is called before the first frame update
     void Start()
@@ -27,8 +28,26 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         
         //reset the player
-        player.reset();
+        reset();
 
+    }
+
+    public bool isPlayerAlive()
+    {
+        return player.gameObject.activeSelf;
+    }
+
+    public void activateGameOver()
+    {
+        gameOverCanvas.gameObject.SetActive(true);
+    }
+    
+    
+    public void reset() 
+    {
+        player.reset();
+        gameOverCanvas.gameObject.SetActive(false);
+        //if needed, reset other things too.
     }
 
 }
