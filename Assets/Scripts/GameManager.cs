@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class GameManager : MonoBehaviour
         player.reset();
         gameOverCanvas.gameObject.SetActive(false);
         //if needed, reset other things too.
+    }
+
+    public void onMenuClick()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
 }
